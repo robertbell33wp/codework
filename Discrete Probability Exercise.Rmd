@@ -1,0 +1,193 @@
+---
+title: "Discrete Probability Exercise"
+author: "Robert M. Bell"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Web Analytics
+## Q1
+```{r hist,  echo=FALSE}
+barplot(c(.03,.09,.24,.27,.25,.09,.03),names.arg=c(0,1,2,3,4,5,6),xlab="Visits per Hour")
+```
+
+Part 1:
+
+For a given hour the probability that the number of visits will be between 4 and 6 is 10%.
+
+\hfill\break
+Part 2:
+```{r calls}
+calls = c(0,1,2,3,4,5,6)
+mean(calls)
+var(calls)
+sd(calls)
+```
+Of the number of visits per hour the mean is 3, the variance is 4.66, the standard deviation is 2.16
+
+## Q2
+
+\hfill\break
+Part 1:
+
+-Assumptions that should be satisfied for X to obey a binomial distribution B(n,p) are:
+
+n must be the number of trials
+  
+must have two complementary outcomes
+
+a fixed probability of successe
+  
+independent trials
+
+\hfill\break
+Part 2:
+
+-What is n and what is p in this case:
+  
+the n is the number of trials 
+  
+the p is the probablity of success
+
+\hfill\break
+Part 3:
+```{r student}
+dbinom(7, size=11, prob=0.68) 
+```
+The probability that exactly 7 of the 11 visitors are college students is 23.3%
+
+\hfill\break
+Part 4:
+```{r expected}
+.68 * 11 
+```
+The expected number of visitors (of the 11) who are college students is 7.5
+
+\hfill\break
+Part 5:
+```{r sd_expected}
+sd(c(1,7))
+```
+The standard deviation of the number of visitors who are college students is 4.24
+
+\hfill\break
+
+## Q3
+Part 1:
+```{r mobile_customers}
+dbinom(8, size=20, prob=0.38) 
+```
+The probability that 8 of the 20 randomly chosen consumers will be mobile consumers is 18%
+
+\break
+Part 2:
+```{r desktop_customers}
+sum(dbinom(12:14, size=20, prob=.62))
+```
+The probability that between 12 and 14 of the 20 randomly chosen consumers will be desktop consumers is 50%
+
+\hfill\break
+Part 3:
+```{r less_customers}
+dbinom(0, size=20, prob=.62)+
+dbinom(1, size=20, prob=.62)+
+dbinom(2, size=20, prob=.62)+
+dbinom(3, size=20, prob=.62)
+```
+The probability that 3 or fewer of the randomly chosen consumers will be desktop consumers is 0%
+\hfill\break
+
+## A Game of Chance
+## Q4
+
+\hfill\break
+Part 1:
+```{r a_answer}
+1 / 4
+```
+The probability that your friend says the answer is “a” is 25%
+
+\hfill\break
+Part 2:
+```{r b_answer}
+1 / 4
+```
+The probability that your friend says the answer is “b” is 25%
+
+\hfill\break
+Part 3:
+
+Since the phoned friend has an 80% probability of picking the correct answer between A and B the stragety should be to go with the friends answer if they select A or B.  If they don't select A or B I should go with answer A because the expected value is still higher than the no answer option.  I would expect to win the full $1,000,000 with the given probabilities between the phone freind and my own guess.  
+
+\break
+
+## Health Care Analytics
+
+## Q5
+
+\hfill\break
+Part 1:
+The probability that the test will identify the person as having the disease is 94% 
+
+\hfill\break
+Part 2:
+```{r wrong}
+dbinom(1, size=3, prob=.09)
+```
+The probability that at least one of the three individuals will be identified by your classifier as having the disease is 22%
+
+\hfill\break
+Part 3:
+```{r has_disease}
+round(((.17)*(.91)) / ((.17)*(.91)) + ((.83)*(.08)))
+```
+If a random person from this area is tested and the results indicate that the person has the disease, the chance that the person actually has the disease is 100%
+\hfill\break
+
+## Airline Analytics
+## Q6
+
+\hfill\break
+Part 1:
+```{r show_up}
+dbinom(0, size=11, prob=1-.20)+
+dbinom(1, size=11, prob=1-.20)+
+dbinom(2, size=11, prob=1-.20)+
+dbinom(3, size=11, prob=1-.20)+
+dbinom(4, size=11, prob=1-.20)+
+dbinom(5, size=11, prob=1-.20)  
+```
+The probability that at most 5 of the 11 persons who purchased first class tickets show up for the flight is 1.1%
+
+\hfill\break
+Part 2:
+```{r show_up2}
+dbinom(10, size=11, prob=1-.20)
+```
+The probability that exactly 10 of the persons who purchased first class tickets show up for the flight is 24%
+
+\hfill\break
+Part 3:
+```{r show_up3}
+dbinom(11, size=11, prob=1-.20) * 9000
+```
+The expected profit from 11 first class passengers is $773 
+
+\hfill\break
+Part 4:
+```{r show_up4}
+dbinom(10, size=11, prob=1-.20) * 12000
+```
+The expected profit from 10 first class passengers is $2834
+
+\hfill\break
+Part 5:
+
+The fact that people often travel in groups does affect the independence assumption about passenger behavior.  If the the occourance of B has and an infulence on the outcome of A then the trial will no longer be independent.  So if someone in the travel group affects the outcome of the other traveler the trial is no longer independent. 
+
+
+
+
+
